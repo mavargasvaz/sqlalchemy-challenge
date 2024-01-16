@@ -9,15 +9,18 @@ from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify
 
-
 # Database Setup
 
 engine = create_engine("sqlite:///Surfs_Up\Starter_Code\Resources\hawaii.sqlite")
+
 Base = automap_base()
+
 Base.prepare(engine, reflect=True)
 
 Measurement = Base.classes.measurement
 Station = Base.classes.station
+
+session = Session(engine)
 
 
 # Flask Setup
@@ -146,3 +149,4 @@ def get_t_start_stop(start,stop):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
